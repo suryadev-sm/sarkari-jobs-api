@@ -28,10 +28,10 @@ Every request needs an API key. To get one, write to support@sarkarimap.org or s
 
 Send the key in either header:
 
-~~
+```
 Authorization: Bearer sm_live_your_key_here
 x-api-key: sm_live_your_key_here
-~~
+```
 
 ### List jobs
 
@@ -45,14 +45,14 @@ x-api-key: sm_live_your_key_here
 | `page` | `1` | Default 1 |
 | `limit` | `20` | Default 20, maximum 100 |
 
-~~bash
+```bash
 curl -H "Authorization: Bearer sm_live_your_key_here" \
   "https://sarkarimap.org/api/v1/jobs?state=Delhi&category=LatestJob&limit=5"
-~~
+```
 
 Response:
 
-~~json
+```json
 {
   "page": 1,
   "limit": 5,
@@ -71,7 +71,7 @@ Response:
     }
   ]
 }
-~~
+```
 
 The public page for any job is `https://sarkarimap.org/job/{slug}`.
 
@@ -79,10 +79,10 @@ The public page for any job is `https://sarkarimap.org/job/{slug}`.
 
 `GET /api/v1/jobs/{slug}`
 
-~~bash
+```bash
 curl -H "Authorization: Bearer sm_live_your_key_here" \
   "https://sarkarimap.org/api/v1/jobs/iit-delhi-junior-project-assistant-admin-recruitment-2026"
-~~
+```
 
 ### Plans
 
@@ -93,17 +93,17 @@ curl -H "Authorization: Bearer sm_live_your_key_here" \
 
 ### JavaScript
 
-~~js
+```js
 const res = await fetch('https://sarkarimap.org/api/v1/jobs?category=LatestJob&limit=10', {
   headers: { Authorization: 'Bearer sm_live_your_key_here' },
 });
 const { results } = await res.json();
 results.forEach((job) => console.log(job.title, 'https://sarkarimap.org/job/' + job.slug));
-~~
+```
 
 ### Python
 
-~~python
+```python
 import requests
 
 r = requests.get(
@@ -114,16 +114,16 @@ r = requests.get(
 )
 for job in r.json()["results"]:
     print(job["title"], "https://sarkarimap.org/job/" + job["slug"])
-~~
+```
 
 ## 2. Widget (no key, no coding)
 
 Paste this where the list should appear. It shows currently open vacancies and updates on its own.
 
-~~html
+```html
 <div class="sarkarimap-widget"><a href="https://sarkarimap.org/">SarkariMap</a> par latest sarkari naukri</div>
 <script async src="https://sarkarimap.org/widget.js?count=8"></script>
-~~
+```
 
 For one state, add its code to the script address, for example `state=up`, `state=bihar`, `state=rajasthan` or `state=mp`. You can pick a state and copy ready-made code at https://sarkarimap.org/widget.
 
